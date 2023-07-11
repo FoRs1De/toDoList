@@ -6,4 +6,5 @@ body {
   padding: 0;
   box-sizing: border-box;
   background-color: #faf9f8;
+  display: flex;
 }
