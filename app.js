@@ -78,18 +78,20 @@ let newElement = (event) => {
   const newItem = document.createElement('div');
   newItem.setAttribute('class', 'saved');
   const inputField = document.getElementById('txt');
-  newItem.innerHTML = ` <input class="radio" type="radio" />${inputField.value}`;
-  document.querySelector('main').append(newItem);
-  inputField.value = '';
+  newItem.innerHTML = ` <input class="radio" type="radio" /><p>${inputField.value}</p>`;
+  let errorMsg = document.createElement('p');
+  errorMsg.setAttribute('class', 'errormsg');
+  errorMsg.innerHTML = 'Please add a task';
+
+  if (inputField.value.length < 1) {
+    document.querySelector('.form-bottom-left').append(errorMsg);
+  } else {
+    document.querySelector('main').append(newItem);
+    inputField.value = '';
+    document.querySelector('.errormsg').remove();
+  }
 };
 
 const addButton = document.querySelector('#add');
 
 addButton.addEventListener('click', newElement);
-
-//completed saved items creating
-
-//delete items
-savedItem.addEventListener('click' (event) => {
-    if(event.target.tagname === )
-})
