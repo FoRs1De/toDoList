@@ -4,7 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
-    <script src="/app.js"></script>
+    <script src="/app.js" defer></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <title>To Do List</title>
   </head>
   <body>
@@ -30,9 +37,51 @@
           <a><href=""><i  class="fa fa-paperclip"></i> </a>
           <a><href=""><i  class="fa fa-check"></i> </a>
          </div>
-
     </div> <!---Vijaya end code-->
-    <main></main>
+   
+    <center><h1>Our to do list</h1></center>
+    <div class="left-bar">Vijaya code</div>
+    <main>
+      <div class="main-header">
+        <div class="main-header-left">
+          <div class="main-header-left-top">
+            <i class="fa-regular fa-sun"></i>
+            <h2>My Day</h2>
+          </div>
+          <div class="main-header-left-bottom"><p id="date"></p></div>
+        </div>
+        <div class="main-header-right">
+          <ul>
+            <li><i class="fa-solid fa-arrow-down-wide-short"></i> Sort</li>
+            <li><i class="fa-solid fa-object-ungroup"></i> Group</li>
+            <li><i class="fa-regular fa-lightbulb"></i> Suggestions</li>
+          </ul>
+        </div>
+      </div>
+      <div class="task">
+        <form>
+          <div class="form-top">
+            <input class="radio" type="radio" /><i
+              id="plus"
+              class="fa-solid fa-plus"
+            ></i
+            ><input id="txt" type="text" placeholder="Add a task" />
+          </div>
+          <div class="form-bottom">
+            <div class="form-bottom-left">
+              <i class="fa-solid fa-calendar-days"></i>
+              <i class="fa-regular fa-bell"></i>
+              <i class="fa-solid fa-clock-rotate-left"></i>
+            </div>
+            <button id="add">Add</button>
+          </div>
+        </form>
+      </div>
+      <div class="saved">
+        <input id="radio" type="radio" />
+        <p id="txt-from-form">fsdfsdf</p>
+      </div>
+    </main>
     <div class="right-bar"></div>
   </body>
 </html>
