@@ -193,16 +193,22 @@ const newElement = (event) => {
   } else if (inputField.value.length < 1 && existingErrorMsg) {
     alert('You cannot create a task without adding it!');
   } else {
-    const inputFieldValue = inputField.value;
+    let package = {
+      content: inputField.value,
+      status: false
+    }
 
     // Generate a unique key
     const uniqueKey = 'task_' + Date.now();
 
+    // Add uniqueKey as id of the newItem
+    newItem.setAttribute('id', uniqueKey); 
+
     // Save the value in localStorage with the unique key
-    localStorage.setItem(uniqueKey, inputFieldValue);
+    localStorage.setItem(uniqueKey, JSON.stringify(package));
 
     // Create the HTML content for the new item
-    newItem.innerHTML = `<img src="/images/unchecked.png" class="img-saved"/><li>${inputFieldValue}</li>`;
+    newItem.innerHTML = `<img src="/images/unchecked.png" class="img-saved"/><li>${package.content}</li>`;
 
     // Append the new item to the DOM
     document.querySelector('main').append(newItem);
@@ -227,11 +233,12 @@ window.addEventListener('load', () => {
   // Iterate over the localStorage keys and restore the items
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
-    const value = localStorage.getItem(key);
+    const value = JSON.parse(localStorage.getItem(key));
 
     const newItem = document.createElement('ul');
     newItem.setAttribute('class', 'saved');
-    newItem.innerHTML = `<img src="/images/unchecked.png" class="img-saved"/><li>${value}</li>`;
+    newItem.setAttribute('id', key); 
+    newItem.innerHTML = `<img src="/images/unchecked.png" class="img-saved"/><li>${value.content}</li>`;
     main.append(newItem);
   }
 });
@@ -242,21 +249,51 @@ const parentElement = document.querySelector('main');
 parentElement.addEventListener('click', (event) => {
   if (event.target.classList.contains('img-saved')) {
     const listItem = event.target.closest('ul');
+    console.log(event.target.closest('ul').getAttribute("id"));
     listItem.remove();
+
+    localStorage.removeItem(event.target.closest('ul').getAttribute("id"))
 
     // Find the corresponding value
     const value = listItem.querySelector('li').textContent;
 
     // Iterate over the localStorage keys and remove the matching item
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      if (localStorage.getItem(key) === value) {
-        localStorage.removeItem(key);
-        break;
-      }
-    }
+    // for (let i = 0; i < localStorage.length; i++) {
+    //   const key = localStorage.key(i);
+    //   if (localStorage.getItem(key) === value) {
+    //     localStorage.removeItem(key);
+    //     break;
+    //   }
+    // }
   }
 });
+
+
+
+// .addEventListener('click', (event) => {
+//   if (event.target.classList.contains('img-saved')) {
+//     const listItem = event.target.closest('ul');
+//     console.log(event.target.closest('ul').getAttribute("id"));
+//     listItem.remove();
+
+//     localStorage.removeItem(event.target.closest('ul').getAttribute("id"))
+
+//     // Find the corresponding value
+//     const value = listItem.querySelector('li').textContent;
+
+//     // Iterate over the localStorage keys and remove the matching item
+//     // for (let i = 0; i < localStorage.length; i++) {
+//     //   const key = localStorage.key(i);
+//     //   if (localStorage.getItem(key) === value) {
+//     //     localStorage.removeItem(key);
+//     //     break;
+//     //   }
+//     // }
+//   }
+// });
+
+
+
 
 /**
  * In this code, we select the parent element that will contain the dynamically created elements
