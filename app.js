@@ -4,6 +4,7 @@ let date = new Date();
 let today = date.getDate();
 let month = date.getMonth();
 let week = date.getUTCDay();
+
 let weekDays = [
   'Monday',
   'Tuesday',
@@ -49,7 +50,7 @@ if (typeof document !== 'undefined') {
 const bottomForm = document.querySelector('.form-bottom');
 const topForm = document.querySelector('.form-top');
 const plusSign = document.querySelector('#plus');
-const radioSign = document.querySelector('.radio');
+const radioSign = document.querySelector('.form-img');
 
 if (typeof document !== 'undefined') {
   let element = document.querySelector('.class-name');
@@ -70,28 +71,202 @@ if (typeof document !== 'undefined') {
 
 // saved items creating.
 
-const savedItem = document.querySelector('.saved');
-savedItem.style.display = 'none';
+// let newElement = (event) => {
+//   event.preventDefault();
+//   const newItem = document.createElement('ul');
+//   newItem.setAttribute('class', 'saved');
+//   const inputField = document.getElementById('txt');
 
-let newElement = (event) => {
+//   const existingErrorMsg = document.querySelector('.errormsg');
+
+//   if (inputField.value.length < 1 && !existingErrorMsg) {
+//     let errorMsg = document.createElement('p');
+//     errorMsg.setAttribute('class', 'errormsg');
+//     errorMsg.innerHTML = 'Please add a task';
+//     document.querySelector('.form-bottom-left').append(errorMsg);
+//   } else if (inputField.value.length < 1 && existingErrorMsg) {
+//     alert('You can not create a task without Adding it!');
+//   } else {
+//     let inputField1 = document.getElementById('txt').value;
+//     const uniqueKey = inputField.value;
+//     localStorage.setItem(uniqueKey, inputField1);
+//     const value = localStorage.getItem(uniqueKey);
+//     newItem.innerHTML = `<img src="/images/unchecked.png" class="img-saved"/><li>${value}</li>`;
+//     document.querySelector('main').append(newItem);
+
+//     inputField.value = '';
+
+//     if (existingErrorMsg) {
+//       existingErrorMsg.remove();
+//     }
+//   }
+// };
+
+// const addButton = document.querySelector('#add');
+
+// addButton.addEventListener('click', newElement);
+
+// const newElement = (event) => {
+//   event.preventDefault();
+//   const newItem = document.createElement('ul');
+//   newItem.setAttribute('class', 'saved');
+//   const inputField = document.getElementById('txt');
+
+//   const existingErrorMsg = document.querySelector('.errormsg');
+
+//   if (inputField.value.length < 1 && !existingErrorMsg) {
+//     let errorMsg = document.createElement('p');
+//     errorMsg.setAttribute('class', 'errormsg');
+//     errorMsg.innerHTML = 'Please add a task';
+//     document.querySelector('.form-bottom-left').append(errorMsg);
+//   } else if (inputField.value.length < 1 && existingErrorMsg) {
+//     alert('You cannot create a task without adding it!');
+//   } else {
+//     const inputFieldValue = inputField.value;
+
+//     // Generate a unique key
+//     const uniqueKey = 'task_' + Date.now();
+
+//     // Save the value in localStorage with the unique key
+//     localStorage.setItem(uniqueKey, inputFieldValue);
+
+//     // Create the HTML content for the new item
+//     newItem.innerHTML = `<img src="/images/unchecked.png" class="img-saved"/><li>${inputFieldValue}</li>`;
+
+//     // Append the new item to the DOM
+//     document.querySelector('main').append(newItem);
+
+//     // Clear the input field
+//     inputField.value = '';
+
+//     if (existingErrorMsg) {
+//       existingErrorMsg.remove();
+//     }
+//   }
+// };
+
+// // Add event listener to the "Add" button
+// const addButton = document.querySelector('#add');
+// addButton.addEventListener('click', newElement);
+
+// // Restore appended items from localStorage on page load
+// window.addEventListener('load', () => {
+//   const main = document.querySelector('main');
+
+//   // Iterate over the localStorage keys and restore the items
+//   for (let i = 0; i < localStorage.length; i++) {
+//     const key = localStorage.key(i);
+//     const value = localStorage.getItem(key);
+
+//     const newItem = document.createElement('ul');
+//     newItem.setAttribute('class', 'saved');
+//     newItem.innerHTML = `<img src="/images/unchecked.png" class="img-saved"/><li>${value}</li>`;
+//     main.append(newItem);
+//   }
+// });
+
+// //completed saved items
+
+// // delete saved items
+
+// const parentElement = document.querySelector('main');
+
+// parentElement.addEventListener('click', (event) => {
+//   if (event.target.classList.contains('img-saved')) {
+//     event.target.parentNode.remove();
+//   }
+// });
+
+const newElement = (event) => {
   event.preventDefault();
-  const newItem = document.createElement('div');
+  const newItem = document.createElement('ul');
   newItem.setAttribute('class', 'saved');
   const inputField = document.getElementById('txt');
-  newItem.innerHTML = ` <input class="radio" type="radio" /><p>${inputField.value}</p>`;
-  let errorMsg = document.createElement('p');
-  errorMsg.setAttribute('class', 'errormsg');
-  errorMsg.innerHTML = 'Please add a task';
 
-  if (inputField.value.length < 1) {
+  const existingErrorMsg = document.querySelector('.errormsg');
+
+  if (inputField.value.length < 1 && !existingErrorMsg) {
+    let errorMsg = document.createElement('p');
+    errorMsg.setAttribute('class', 'errormsg');
+    errorMsg.innerHTML = 'Please add a task';
     document.querySelector('.form-bottom-left').append(errorMsg);
+  } else if (inputField.value.length < 1 && existingErrorMsg) {
+    alert('You cannot create a task without adding it!');
   } else {
+    const inputFieldValue = inputField.value;
+
+    // Generate a unique key
+    const uniqueKey = 'task_' + Date.now();
+
+    // Save the value in localStorage with the unique key
+    localStorage.setItem(uniqueKey, inputFieldValue);
+
+    // Create the HTML content for the new item
+    newItem.innerHTML = `<img src="/images/unchecked.png" class="img-saved"/><li>${inputFieldValue}</li>`;
+
+    // Append the new item to the DOM
     document.querySelector('main').append(newItem);
+
+    // Clear the input field
     inputField.value = '';
-    document.querySelector('.errormsg').remove();
+
+    if (existingErrorMsg) {
+      existingErrorMsg.remove();
+    }
   }
 };
 
+// Add event listener to the "Add" button
 const addButton = document.querySelector('#add');
-
 addButton.addEventListener('click', newElement);
+
+// Restore appended items from localStorage on page load
+window.addEventListener('load', () => {
+  const main = document.querySelector('main');
+
+  // Iterate over the localStorage keys and restore the items
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    const value = localStorage.getItem(key);
+
+    const newItem = document.createElement('ul');
+    newItem.setAttribute('class', 'saved');
+    newItem.innerHTML = `<img src="/images/unchecked.png" class="img-saved"/><li>${value}</li>`;
+    main.append(newItem);
+  }
+});
+
+// Delete saved items
+const parentElement = document.querySelector('main');
+
+parentElement.addEventListener('click', (event) => {
+  if (event.target.classList.contains('img-saved')) {
+    const listItem = event.target.closest('ul');
+    listItem.remove();
+
+    // Find the corresponding value
+    const value = listItem.querySelector('li').textContent;
+
+    // Iterate over the localStorage keys and remove the matching item
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      if (localStorage.getItem(key) === value) {
+        localStorage.removeItem(key);
+        break;
+      }
+    }
+  }
+});
+
+/**
+ * In this code, we select the parent element that will contain the dynamically created elements
+ * (in this example, the parent element is <main>). We then attach a click event listener to the parent
+ *  element using addEventListener. Inside the event listener, we check if the clicked element has the class 
+ * name 'img-saved' using event.target.classList.contains('img-saved'). If it does, we remove its parent 
+ * node from the DOM.
+
+By using event delegation, the click event is handled 
+by the parent element, which is already present in the DOM. This allows 
+the dynamically created elements to be captured by the event listener, even if they were not present
+ when the event listener was initially attached.
+ */
