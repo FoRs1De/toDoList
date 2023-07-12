@@ -206,7 +206,7 @@ const newElement = (event) => {
     localStorage.setItem(uniqueKey, JSON.stringify(package));
 
     // Create the HTML content for the new item
-    newItem.innerHTML = `<div class="left-saved"><img src="/images/unchecked.png" class="img-saved"/><li>${package.content}</li></div><img class='right-saved' src="/images/close-button-png-23.png" />`;
+    newItem.innerHTML = `<div class="left-saved"><img src="/images/unchecked.png" class="img-saved"/><li>${package.content}</li></div><div class="right-images"><img class='edit-button' src="/images/84380.png" /><img class='right-saved' src="/images/close-button-png-23.png" /></div>`;
 
     // Append the new item to the DOM
     document.querySelector('main').append(newItem);
@@ -226,6 +226,7 @@ const addButton = document.querySelector('#add');
 addButton.addEventListener('click', newElement);
 
 // Restore appended items from localStorage on page load
+
 window.addEventListener('load', () => {
   const main = document.querySelector('main');
 
@@ -235,10 +236,17 @@ window.addEventListener('load', () => {
     const value = JSON.parse(localStorage.getItem(key));
 
     const newItem = document.createElement('ul');
-
     newItem.setAttribute('class', 'saved');
     newItem.setAttribute('id', key);
-    newItem.innerHTML = `<div class="left-saved"><img src="/images/unchecked.png" class="img-saved"/><li>${value.content}</li></div><img class='right-saved' src="/images/close-button-png-23.png" />`;
+    newItem.innerHTML = `<div class="left-saved"><img src="/images/unchecked.png" class="img-saved"/><li>${value.content}</li></div><div class="right-images"><img class='edit-button' src="/images/84380.png" /><img class='right-saved' src="/images/close-button-png-23.png" /></div>`;
+
+    if (value.status === true) {
+      newItem.classList.add('crossed');
+      newItem
+        .querySelector('.img-saved')
+        .setAttribute('src', '/images/checked.png');
+    }
+
     main.append(newItem);
   }
 });
@@ -269,8 +277,14 @@ parentElement.addEventListener('click', (event) => {
       listItem.setAttribute('class', 'saved');
       leftImg.setAttribute('src', '/images/unchecked.png');
       //append items with new class
-      document.querySelector('main').append(listItem);
     }
+    // Get the unique key from the item's id attribute
+    const uniqueKey = listItem.getAttribute('id');
+
+    // Update the status in localStorage
+    const itemData = JSON.parse(localStorage.getItem(uniqueKey));
+    itemData.status = listItem.classList.contains('crossed');
+    localStorage.setItem(uniqueKey, JSON.stringify(itemData));
   }
 });
 

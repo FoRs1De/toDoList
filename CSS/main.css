@@ -201,3 +201,21 @@ li {
   text-decoration: line-through;
   justify-content: space-between;
 }
+
+.right-images {
+  display: flex;
+  align-items: center;
+}
+
+.edit-button {
+  width: 15px;
+  border-radius: 10%;
+  padding: 5px;
+  margin-left: 15px;
+}
+
+.edit-button:hover {
+  background-color: lightgray;
+  border-radius: 40%;
+  padding: 5px;
+}
