@@ -162,3 +162,42 @@ li {
 .img-saved:hover {
   content: url(/images/checked.png);
 }
+
+.left-saved {
+  display: flex;
+  align-items: center;
+}
+
+.right-saved {
+  width: 15px;
+  margin-right: 20px;
+  margin-left: 20px;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.right-saved:hover {
+  background-color: lightgray;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.saved {
+  display: flex;
+  justify-content: space-between;
+}
+
+.crossed {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0px 3px 4px 0px lightgrey;
+  height: auto;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  white-space: pre-wrap;
+  text-decoration: line-through;
+  justify-content: space-between;
+}

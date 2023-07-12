@@ -37,8 +37,6 @@ let monthName = monthNames[month];
 let pDate = document.getElementById('date');
 
 if (typeof document !== 'undefined') {
-  let element = document.querySelector('.class-name');
-
   // Manipulating the DOM here
   pDate.innerHTML = `${dayName}, ${monthName} ${today}`;
 }
@@ -195,20 +193,20 @@ const newElement = (event) => {
   } else {
     let package = {
       content: inputField.value,
-      status: false
-    }
+      status: false,
+    };
 
     // Generate a unique key
     const uniqueKey = 'task_' + Date.now();
 
     // Add uniqueKey as id of the newItem
-    newItem.setAttribute('id', uniqueKey); 
+    newItem.setAttribute('id', uniqueKey);
 
     // Save the value in localStorage with the unique key
     localStorage.setItem(uniqueKey, JSON.stringify(package));
 
     // Create the HTML content for the new item
-    newItem.innerHTML = `<img src="/images/unchecked.png" class="img-saved"/><li>${package.content}</li>`;
+    newItem.innerHTML = `<div class="left-saved"><img src="/images/unchecked.png" class="img-saved"/><li>${package.content}</li></div><img class='right-saved' src="/images/close-button-png-23.png" />`;
 
     // Append the new item to the DOM
     document.querySelector('main').append(newItem);
@@ -237,23 +235,54 @@ window.addEventListener('load', () => {
     const value = JSON.parse(localStorage.getItem(key));
 
     const newItem = document.createElement('ul');
+
     newItem.setAttribute('class', 'saved');
-    newItem.setAttribute('id', key); 
-    newItem.innerHTML = `<img src="/images/unchecked.png" class="img-saved"/><li>${value.content}</li>`;
+    newItem.setAttribute('id', key);
+    newItem.innerHTML = `<div class="left-saved"><img src="/images/unchecked.png" class="img-saved"/><li>${value.content}</li></div><img class='right-saved' src="/images/close-button-png-23.png" />`;
     main.append(newItem);
   }
 });
 
-// Delete saved items
+//cross saved items and change img on click
 const parentElement = document.querySelector('main');
 
 parentElement.addEventListener('click', (event) => {
-  if (event.target.classList.contains('img-saved')) {
+  if (
+    event.target.classList.contains('img-saved') ||
+    event.target.classList.contains('checked')
+  ) {
     const listItem = event.target.closest('ul');
-    console.log(event.target.closest('ul').getAttribute("id"));
+    event.target.closest('ul').getAttribute('id');
+    let leftImg = listItem.querySelector('.img-saved');
+
+    // Change class of <li> element
+    if (listItem.classList.contains('saved')) {
+      //delete element
+      listItem.remove();
+      //change class of elements
+      listItem.setAttribute('class', 'crossed');
+      leftImg.setAttribute('src', '/images/checked.png');
+      //append items with new class
+      document.querySelector('main').append(listItem);
+    } else if (listItem.classList.contains('crossed')) {
+      //change class of elements
+      listItem.setAttribute('class', 'saved');
+      leftImg.setAttribute('src', '/images/unchecked.png');
+      //append items with new class
+      document.querySelector('main').append(listItem);
+    }
+  }
+});
+
+// Delete saved items
+
+parentElement.addEventListener('click', (event) => {
+  if (event.target.classList.contains('right-saved')) {
+    const listItem = event.target.closest('ul');
+    console.log(event.target.closest('ul').getAttribute('id'));
     listItem.remove();
 
-    localStorage.removeItem(event.target.closest('ul').getAttribute("id"))
+    localStorage.removeItem(event.target.closest('ul').getAttribute('id'));
 
     // Find the corresponding value
     const value = listItem.querySelector('li').textContent;
@@ -268,8 +297,6 @@ parentElement.addEventListener('click', (event) => {
     // }
   }
 });
-
-
 
 // .addEventListener('click', (event) => {
 //   if (event.target.classList.contains('img-saved')) {
@@ -292,9 +319,6 @@ parentElement.addEventListener('click', (event) => {
 //     // }
 //   }
 // });
-
-
-
 
 /**
  * In this code, we select the parent element that will contain the dynamically created elements
