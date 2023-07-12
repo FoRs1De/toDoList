@@ -218,6 +218,7 @@ const newElement = (event) => {
 
 // Add event listener to the "Add" button
 const addButton = document.querySelector('#add');
+
 addButton.addEventListener('click', newElement);
 
 // Restore appended items from localStorage on page load
