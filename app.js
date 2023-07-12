@@ -288,12 +288,22 @@ parentElement.addEventListener('click', (event) => {
   }
 });
 
+//Edit stored items
+parentElement.addEventListener('click', (event) => {
+  if (event.target.classList.contains('edit-button')) {
+    const listItem = event.target.closest('ul');
+    event.target.closest('ul').getAttribute('id');
+    const inputField = document.createElement('input');
+    inputField.setAttribute('class', 'editInput');
+  }
+});
+
 // Delete saved items
 
 parentElement.addEventListener('click', (event) => {
   if (event.target.classList.contains('right-saved')) {
     const listItem = event.target.closest('ul');
-    console.log(event.target.closest('ul').getAttribute('id'));
+    event.target.closest('ul').getAttribute('id');
     listItem.remove();
 
     localStorage.removeItem(event.target.closest('ul').getAttribute('id'));
