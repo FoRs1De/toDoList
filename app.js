@@ -290,11 +290,24 @@ parentElement.addEventListener('click', (event) => {
 
 //Edit stored items
 parentElement.addEventListener('click', (event) => {
+  const id = event.target.parentElement.parentElement.id;
+  console.log(event.target.classList.contains('edit-button'));
   if (event.target.classList.contains('edit-button')) {
     const listItem = event.target.closest('ul');
-    event.target.closest('ul').getAttribute('id');
     const inputField = document.createElement('input');
     inputField.setAttribute('class', 'editInput');
+    inputField.value = listItem.firstChild.lastChild.innerText
+    listItem.innerHTML = ""
+    listItem.appendChild(inputField)
+    inputField.focus()
+    inputField.addEventListener("blur", ()=>{
+      let content = inputField.value
+      listItem.innerHTML = ""
+      listItem.innerHTML = `<div class="left-saved"><img src="/images/unchecked.png" class="img-saved"/><li>${content}</li></div><div class="right-images"><img class='edit-button' src="/images/84380.png" /><img class='right-saved' src="/images/close-button-png-23.png" /></div>`;
+      let localTask = JSON.parse(localStorage.getItem(id))
+      localTask = {...localTask, content: content}
+      localStorage.setItem(id, JSON.stringify(localTask))
+    })
   }
 });
 
