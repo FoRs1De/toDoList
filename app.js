@@ -191,8 +191,9 @@ parentElement.addEventListener('click', (event) => {
       listItem.remove();
       //change class of elements
       listItem.setAttribute('class', 'saved');
-      leftImg.setAttribute('src', '/images/unchecked.png');
+      leftImg.setAttribute('src', 'images/unchecked.png');
       listItem.querySelector('.edit-button').style.display = 'block';
+      listItem.innerHTML = ''
       document.querySelector('.notDone').append(listItem);
       //append items with new class
     }
