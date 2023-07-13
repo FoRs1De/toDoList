@@ -231,7 +231,7 @@ const newElement = (event) => {
     newItem.innerHTML = `<div class="left-saved"><img src="/images/unchecked.png" class="img-saved"/><li>${package.content}</li></div><div class="right-images"><img class='edit-button' src="/images/84380.png" /><img class='right-saved' src="/images/close-button-png-23.png" /></div>`;
 
     // Append the new item to the DOM
-    document.querySelector('main').append(newItem);
+    document.querySelector('.notDone').append(newItem);
 
     // Clear the input field
     inputField.value = '';
@@ -250,7 +250,7 @@ addButton.addEventListener('click', newElement);
 // Restore appended items from localStorage on page load
 
 window.addEventListener('load', () => {
-  const main = document.querySelector('main');
+  const main = document.querySelector('.notDone');
 
   // Iterate over the localStorage keys and restore the items
   for (let i = 0; i < localStorage.length; i++) {
@@ -262,12 +262,15 @@ window.addEventListener('load', () => {
     newItem.setAttribute('id', key);
     newItem.innerHTML = `<div class="left-saved"><img src="/images/unchecked.png" class="img-saved"/><li>${value.content}</li></div><div class="right-images"><img class='edit-button' src="/images/84380.png" /><img class='right-saved' src="/images/close-button-png-23.png" /></div>`;
     if (value.status === true) {
-      newItem.classList.add('crossed');
+      newItem.setAttribute('class', 'crossed');
       newItem
         .querySelector('.img-saved')
         .setAttribute('src', '/images/checked.png');
+      newItem.querySelector('.edit-button').style.display = 'none';
+      document.querySelector('.done').append(newItem);
+    } else {
+      main.append(newItem);
     }
-    main.append(newItem);
   }
 });
 
@@ -294,10 +297,12 @@ parentElement.addEventListener('click', (event) => {
       document.querySelector('main').append(listItem);
       listItem.querySelector('.edit-button').style.display = 'none';
     } else if (listItem.classList.contains('crossed')) {
+      listItem.remove();
       //change class of elements
       listItem.setAttribute('class', 'saved');
       leftImg.setAttribute('src', '/images/unchecked.png');
       listItem.querySelector('.edit-button').style.display = 'block';
+      document.querySelector('.notDone').append(listItem);
       //append items with new class
     }
     // Get the unique key from the item's id attribute
