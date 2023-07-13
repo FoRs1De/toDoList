@@ -219,3 +219,12 @@ li {
   border-radius: 40%;
   padding: 5px;
 }
+
+.editInput {
+  width: 100%;
+}
+
+.editInput:focus {
+  outline: none;
+  border: 0;
+}

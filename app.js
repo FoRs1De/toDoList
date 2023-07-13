@@ -1,45 +1,67 @@
 // Date for top left menu
 
-let date = new Date();
-let today = date.getDate();
-let month = date.getMonth();
-let week = date.getUTCDay();
+let clock = () => {
+  let date = new Date();
+  let today = date.getDate();
+  let month = date.getMonth();
+  let week = date.getUTCDay();
+  let hr = date.getHours();
+  let min = date.getMinutes();
+  let sec = date.getSeconds();
 
-let weekDays = [
-  'Monday',
-  'Tuesday',
-  'Wednesday',
-  'Thursday',
-  'Friday',
-  'Saturday',
-  'Monday',
-];
+  if (hr < 10) {
+    hr = '0' + hr;
+  }
 
-let monthNames = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
+  if (min < 10) {
+    min = '0' + min;
+  }
 
-let dayName = weekDays[week - 1];
+  if (sec < 10) {
+    sec = '0' + sec;
+  }
 
-let monthName = monthNames[month];
+  if (today < 10) {
+    today = '0' + today;
+  }
 
-let pDate = document.getElementById('date');
+  let weekDays = [
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
+    'Monday',
+  ];
 
-if (typeof document !== 'undefined') {
-  // Manipulating the DOM here
-  pDate.innerHTML = `${dayName}, ${monthName} ${today}`;
-}
+  let monthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+
+  let dayName = weekDays[week - 1];
+
+  let monthName = monthNames[month];
+
+  let showDate = `${hr}:${min}:${sec} ${dayName}, ${monthName} ${today} `;
+  let pDate = document.getElementById('date');
+
+  pDate.innerHTML = showDate;
+
+  setTimeout(clock, 1000);
+};
+clock();
 
 // Date manipulation completed
 
@@ -239,14 +261,12 @@ window.addEventListener('load', () => {
     newItem.setAttribute('class', 'saved');
     newItem.setAttribute('id', key);
     newItem.innerHTML = `<div class="left-saved"><img src="/images/unchecked.png" class="img-saved"/><li>${value.content}</li></div><div class="right-images"><img class='edit-button' src="/images/84380.png" /><img class='right-saved' src="/images/close-button-png-23.png" /></div>`;
-
     if (value.status === true) {
       newItem.classList.add('crossed');
       newItem
         .querySelector('.img-saved')
         .setAttribute('src', '/images/checked.png');
     }
-
     main.append(newItem);
   }
 });
@@ -272,10 +292,12 @@ parentElement.addEventListener('click', (event) => {
       leftImg.setAttribute('src', '/images/checked.png');
       //append items with new class
       document.querySelector('main').append(listItem);
+      listItem.querySelector('.edit-button').style.display = 'none';
     } else if (listItem.classList.contains('crossed')) {
       //change class of elements
       listItem.setAttribute('class', 'saved');
       leftImg.setAttribute('src', '/images/unchecked.png');
+      listItem.querySelector('.edit-button').style.display = 'block';
       //append items with new class
     }
     // Get the unique key from the item's id attribute
@@ -291,23 +313,33 @@ parentElement.addEventListener('click', (event) => {
 //Edit stored items
 parentElement.addEventListener('click', (event) => {
   const id = event.target.parentElement.parentElement.id;
-  console.log(event.target.classList.contains('edit-button'));
+  event.target.classList.contains('edit-button');
   if (event.target.classList.contains('edit-button')) {
     const listItem = event.target.closest('ul');
     const inputField = document.createElement('input');
     inputField.setAttribute('class', 'editInput');
-    inputField.value = listItem.firstChild.lastChild.innerText
-    listItem.innerHTML = ""
-    listItem.appendChild(inputField)
-    inputField.focus()
-    inputField.addEventListener("blur", ()=>{
-      let content = inputField.value
-      listItem.innerHTML = ""
+    inputField.value = listItem.firstChild.lastChild.innerText;
+    listItem.innerHTML = ``;
+    listItem.appendChild(inputField);
+    inputField.focus();
+    inputField.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        let content = inputField.value;
+        listItem.innerHTML = '';
+        listItem.innerHTML = `<div class="left-saved"><img src="/images/unchecked.png" class="img-saved"/><li>${content}</li></div><div class="right-images"><img class='edit-button' src="/images/84380.png" /><img class='right-saved' src="/images/close-button-png-23.png" /></div>`;
+        let localTask = JSON.parse(localStorage.getItem(id));
+        localTask = { ...localTask, content: content };
+        localStorage.setItem(id, JSON.stringify(localTask));
+      }
+    });
+    inputField.addEventListener('blur', () => {
+      let content = inputField.value;
+      listItem.innerHTML = '';
       listItem.innerHTML = `<div class="left-saved"><img src="/images/unchecked.png" class="img-saved"/><li>${content}</li></div><div class="right-images"><img class='edit-button' src="/images/84380.png" /><img class='right-saved' src="/images/close-button-png-23.png" /></div>`;
-      let localTask = JSON.parse(localStorage.getItem(id))
-      localTask = {...localTask, content: content}
-      localStorage.setItem(id, JSON.stringify(localTask))
-    })
+      let localTask = JSON.parse(localStorage.getItem(id));
+      localTask = { ...localTask, content: content };
+      localStorage.setItem(id, JSON.stringify(localTask));
+    });
   }
 });
 
