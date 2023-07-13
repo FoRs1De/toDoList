@@ -231,7 +231,7 @@ parentElement.addEventListener('click', (event) => {
     inputField.addEventListener('blur', () => {
       let content = inputField.value;
       listItem.innerHTML = '';
-      listItem.innerHTML = `<div class="left-saved"><img src="images/unchecked.png" class="img-saved"/><li>${content}</li></div><div class="right-images"><img class='edit-button' src="images/84380.png" /><img class='right-saved' src="/images/close-button-png-23.png" /></div>`;
+      listItem.innerHTML = `<div class="left-saved"><img src="images/unchecked.png" class="img-saved"/><li>${content}</li></div><div class="right-images"><img class='edit-button' src="images/84380.png" /><img class='right-saved' src="images/close-button-png-23.png" /></div>`;
       let localTask = JSON.parse(localStorage.getItem(id));
       localTask = { ...localTask, content: content };
       localStorage.setItem(id, JSON.stringify(localTask));
