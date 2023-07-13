@@ -119,7 +119,7 @@ const newElement = (event) => {
     localStorage.setItem(uniqueKey, JSON.stringify(package));
 
     // Create the HTML content for the new item
-    newItem.innerHTML = `<div class="left-saved"><img src="images/unchecked.png" class="img-saved"/><li>${package.content}</li></div><div class="right-images"><img class='edit-button' src="images/84380.png" /><img class='right-saved' src="/images/close-button-png-23.png" /></div>`;
+    newItem.innerHTML = `<div class="left-saved"><img src="images/unchecked.png" class="img-saved"/><li>${package.content}</li></div><div class="right-images"><img class='edit-button' src="images/84380.png" /><img class='right-saved' src="images/close-button-png-23.png" /></div>`;
 
     // Append the new item to the DOM
     document.querySelector('.notDone').append(newItem);
@@ -151,7 +151,7 @@ window.addEventListener('load', () => {
     const newItem = document.createElement('ul');
     newItem.setAttribute('class', 'saved');
     newItem.setAttribute('id', key);
-    newItem.innerHTML = `<div class="left-saved"><img src="images/unchecked.png" class="img-saved"/><li>${value.content}</li></div><div class="right-images"><img class='edit-button' src="images/84380.png" /><img class='right-saved' src="/images/close-button-png-23.png" /></div>`;
+    newItem.innerHTML = `<div class="left-saved"><img src="images/unchecked.png" class="img-saved"/><li>${value.content}</li></div><div class="right-images"><img class='edit-button' src="images/84380.png" /><img class='right-saved' src="images/close-button-png-23.png" /></div>`;
     if (value.status === true) {
       newItem.setAttribute('class', 'crossed');
       newItem
@@ -222,7 +222,7 @@ parentElement.addEventListener('click', (event) => {
       if (e.key === 'Enter') {
         let content = inputField.value;
         listItem.innerHTML = '';
-        listItem.innerHTML = `<div class="left-saved"><img src="images/unchecked.png" class="img-saved"/><li>${content}</li></div><div class="right-images"><img class='edit-button' src="images/84380.png" /><img class='right-saved' src="/images/close-button-png-23.png" /></div>`;
+        listItem.innerHTML = `<div class="left-saved"><img src="images/unchecked.png" class="img-saved"/><li>${content}</li></div><div class="right-images"><img class='edit-button' src="images/84380.png" /><img class='right-saved' src="images/close-button-png-23.png" /></div>`;
         let localTask = JSON.parse(localStorage.getItem(id));
         localTask = { ...localTask, content: content };
         localStorage.setItem(id, JSON.stringify(localTask));
