@@ -185,7 +185,7 @@ parentElement.addEventListener('click', (event) => {
       listItem.setAttribute('class', 'crossed');
       leftImg.setAttribute('src', 'images/checked.png');
       //append items with new class
-      document.querySelector('main').append(listItem);
+      document.querySelector('.done').append(listItem);
       listItem.querySelector('.edit-button').style.display = 'none';
     } else if (listItem.classList.contains('crossed')) {
       listItem.remove();
