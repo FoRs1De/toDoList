@@ -156,7 +156,7 @@ window.addEventListener('load', () => {
       newItem.setAttribute('class', 'crossed');
       newItem
         .querySelector('.img-saved')
-        .setAttribute('src', '/images/checked.png');
+        .setAttribute('src', 'images/checked.png');
       newItem.querySelector('.edit-button').style.display = 'none';
       document.querySelector('.done').append(newItem);
     } else {
@@ -183,7 +183,7 @@ parentElement.addEventListener('click', (event) => {
       listItem.remove();
       //change class of elements
       listItem.setAttribute('class', 'crossed');
-      leftImg.setAttribute('src', '/images/checked.png');
+      leftImg.setAttribute('src', 'images/checked.png');
       //append items with new class
       document.querySelector('main').append(listItem);
       listItem.querySelector('.edit-button').style.display = 'none';
