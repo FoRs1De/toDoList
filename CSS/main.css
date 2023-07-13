@@ -160,7 +160,7 @@ li {
 }
 
 .img-saved:hover {
-  content: url(images/checked.png);
+  content: url(./images/checked.png);
 }
 
 .left-saved {
