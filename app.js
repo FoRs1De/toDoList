@@ -156,7 +156,7 @@ window.addEventListener('load', () => {
       newItem.setAttribute('class', 'crossed');
       newItem
         .querySelector('.img-saved')
-        .setAttribute('src', '/images/checked.png');
+        .setAttribute('src', 'images/checked.png');
       newItem.querySelector('.edit-button').style.display = 'none';
       document.querySelector('.done').append(newItem);
     } else {
@@ -183,16 +183,17 @@ parentElement.addEventListener('click', (event) => {
       listItem.remove();
       //change class of elements
       listItem.setAttribute('class', 'crossed');
-      leftImg.setAttribute('src', '/images/checked.png');
+      leftImg.setAttribute('src', 'images/checked.png');
       //append items with new class
-      document.querySelector('main').append(listItem);
+      document.querySelector('.done').append(listItem);
       listItem.querySelector('.edit-button').style.display = 'none';
     } else if (listItem.classList.contains('crossed')) {
       listItem.remove();
       //change class of elements
       listItem.setAttribute('class', 'saved');
-      leftImg.setAttribute('src', '/images/unchecked.png');
+      leftImg.setAttribute('src', 'images/unchecked.png');
       listItem.querySelector('.edit-button').style.display = 'block';
+
       document.querySelector('.notDone').append(listItem);
       //append items with new class
     }
@@ -209,6 +210,7 @@ parentElement.addEventListener('click', (event) => {
 //Edit stored items
 parentElement.addEventListener('click', (event) => {
   const id = event.target.parentElement.parentElement.id;
+  console.log(id);
   event.target.classList.contains('edit-button');
   if (event.target.classList.contains('edit-button')) {
     const listItem = event.target.closest('ul');
@@ -224,6 +226,7 @@ parentElement.addEventListener('click', (event) => {
         listItem.innerHTML = '';
         listItem.innerHTML = `<div class="left-saved"><img src="images/unchecked.png" class="img-saved"/><li>${content}</li></div><div class="right-images"><img class='edit-button' src="images/84380.png" /><img class='right-saved' src="images/close-button-png-23.png" /></div>`;
         let localTask = JSON.parse(localStorage.getItem(id));
+        console.log(localTask);
         localTask = { ...localTask, content: content };
         localStorage.setItem(id, JSON.stringify(localTask));
       }
