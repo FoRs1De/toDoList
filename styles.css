@@ -1,5 +1,5 @@
-@import url('/CSS/left-bar.css');
-@import url('/CSS/main.css');
+@import url('./CSS/left-bar.css');
+@import url('./CSS/main.css');
 
 body {
   margin: 0;
