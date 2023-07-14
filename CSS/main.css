@@ -228,3 +228,12 @@ li {
   outline: none;
   border: 0;
 }
+
+.scroll {
+  overflow-y: auto;
+  height: 700px;
+}
+
+main {
+  margin-bottom: 0;
+}

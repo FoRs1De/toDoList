@@ -15,92 +15,97 @@
     <title>To Do List</title>
   </head>
   <body>
-    <div class="left-bar">
-      <!--Vijaya begin code--->
-      <div class="menu">
-        <a href=""><i class="fa fa-bars"></i></a>
-      </div>
-      <div class="content">
-        <ul>
-          <li>
-            <a href=""><i class="fa fa-sun"></i> My Day</a>
-          </li>
-          <li>
-            <a href=""><i class="fa fa-star"></i> Important</a>
-          </li>
-          <li>
-            <a href=""><i class="fa fa-calendar-days"></i> Planned</a>
-          </li>
-          <li>
-            <a href=""><i class="fa fa-user"></i> Assigned to me</a>
-          </li>
-          <li>
-            <a href=""><i class="fa fa-house"></i> Tasks</a>
-          </li>
-          <hr style="width: 96%; margin-left: auto; color: lightgray" />
-          <div class="new-list">
-            <li>
-              <a style="color: cornflowerblue" href=""
-                ><i class="fa-solid fa-plus"></i>New list</a
-              >
-            </li>
-            <li>
-              <a style="color: cornflowerblue" href=""
-                ><i class="fa fa-square-plus"></i
-              ></a>
-            </li>
-          </div>
-        </ul>
-      </div>
-      <div class="leftbar-footer">
-        <a href=""><i class="fa fa-envelope"></i> </a>
-        <a href=""><i class="fa fa-calendar-days"></i> </a>
-        <a href=""><i class="fa fa-user-group"></i> </a>
-        <a href=""><i class="fa fa-paperclip"></i> </a>
-        <a href=""><i class="fa fa-check"></i> </a>
-      </div>
-    </div>
-    <!---Vijaya end code-->
-    <main>
-      <div class="main-header">
-        <div class="main-header-left">
-          <div class="main-header-left-top">
-            <i class="fa-regular fa-sun"></i>
-            <h2>My Day</h2>
-          </div>
-          <div class="main-header-left-bottom">
-            <p id="date"></p>
-            <p id="time"></p>
-          </div>
+    <div class="wrapper">
+      <div class="left-bar">
+        <!--Vijaya begin code--->
+        <div class="menu">
+          <a href=""><i class="fa fa-bars"></i></a>
         </div>
-        <div class="main-header-right">
+        <div class="content">
           <ul>
-            <li><i class="fa-solid fa-arrow-down-wide-short"></i> Sort</li>
-            <li><i class="fa-solid fa-object-ungroup"></i> Group</li>
-            <li><i class="fa-regular fa-lightbulb"></i> Suggestions</li>
+            <li>
+              <a href=""><i class="fa fa-sun"></i> My Day</a>
+            </li>
+            <li>
+              <a href=""><i class="fa fa-star"></i> Important</a>
+            </li>
+            <li>
+              <a href=""><i class="fa fa-calendar-days"></i> Planned</a>
+            </li>
+            <li>
+              <a href=""><i class="fa fa-user"></i> Assigned to me</a>
+            </li>
+            <li>
+              <a href=""><i class="fa fa-house"></i> Tasks</a>
+            </li>
+            <hr style="width: 96%; margin-left: auto; color: lightgray" />
+            <div class="new-list">
+              <li>
+                <a style="color: cornflowerblue" href=""
+                  ><i class="fa-solid fa-plus"></i>New list</a
+                >
+              </li>
+              <li>
+                <a style="color: cornflowerblue" href=""
+                  ><i class="fa fa-square-plus"></i
+                ></a>
+              </li>
+            </div>
           </ul>
         </div>
+        <div class="leftbar-footer">
+          <a href=""><i class="fa fa-envelope"></i> </a>
+          <a href=""><i class="fa fa-calendar-days"></i> </a>
+          <a href=""><i class="fa fa-user-group"></i> </a>
+          <a href=""><i class="fa fa-paperclip"></i> </a>
+          <a href=""><i class="fa fa-check"></i> </a>
+        </div>
       </div>
-      <div class="task">
-        <form>
-          <div class="form-top">
-            <img class="form-img" src="images/unchecked.png" />
-            <i id="plus" class="fa-solid fa-plus"></i
-            ><input id="txt" type="text" placeholder="Add a task" />
-          </div>
-          <div class="form-bottom">
-            <div class="form-bottom-left">
-              <i class="fa-solid fa-calendar-days"></i>
-              <i class="fa-regular fa-bell"></i>
-              <i class="fa-solid fa-clock-rotate-left"></i>
+      <!---Vijaya end code-->
+      <main>
+        <div class="main-header">
+          <div class="main-header-left">
+            <div class="main-header-left-top">
+              <i class="fa-regular fa-sun"></i>
+              <h2>My Day</h2>
             </div>
-            <button id="add">Add</button>
+            <div class="main-header-left-bottom">
+              <p id="date"></p>
+              <p id="time"></p>
+            </div>
           </div>
-        </form>
-      </div>
-      <div class="notDone"></div>
-      <div class="done" id="doneDiv"><h2>Completed tasks</h2></div>
-    </main>
-    <div class="right-bar"></div>
+          <div class="main-header-right">
+            <ul>
+              <li><i class="fa-solid fa-arrow-down-wide-short"></i> Sort</li>
+              <li><i class="fa-solid fa-object-ungroup"></i> Group</li>
+              <li><i class="fa-regular fa-lightbulb"></i> Suggestions</li>
+            </ul>
+          </div>
+        </div>
+        <div class="task">
+          <form>
+            <div class="form-top">
+              <img class="form-img" src="images/unchecked.png" />
+              <i id="plus" class="fa-solid fa-plus"></i
+              ><input id="txt" type="text" placeholder="Add a task" />
+            </div>
+            <div class="form-bottom">
+              <div class="form-bottom-left">
+                <i class="fa-solid fa-calendar-days"></i>
+                <i class="fa-regular fa-bell"></i>
+                <i class="fa-solid fa-clock-rotate-left"></i>
+              </div>
+              <button id="add">Add</button>
+            </div>
+          </form>
+        </div>
+        <div class="scroll">
+          <div class="notDone"></div>
+          <div class="done" id="doneDiv"><h2>Completed tasks</h2></div>
+        </div>
+      </main>
+      <div class="right-bar"></div>
+    </div>
+    <footer><center>Todo list done by Oleksiy and Vijaya</center></footer>
   </body>
 </html>
